@@ -1,0 +1,70 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.lobby {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-text {
+  color: #ccc;
+  text-align: center;
+}
+
+.message {
+  width: 100%;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.message-meta {
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.message-from {
+  font-weight: bold;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.message-time {
+  color: #ccc;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.message-text {
+  margin: 3px 0;
+  padding: 5px 10px;
+}
+
+.message-input {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px 10px;
+  background: #eee;
+  box-shadow: 0 -2px 2px 0 rgba(0,0,0,0.3)
+}

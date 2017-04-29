@@ -1,0 +1,77 @@
+{
+  "name": "ai-react",
+  "version": "1.0.0",
+  "description": "Heat Control Frontend",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress --profile --colors",
+    "dev": "webpack-dev-server --host 0.0.0.0 --progress --profile --colors --hot"
+  },
+  "author": "Piotr Hankiewicz <p.hankiewicz@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "material-ui": "^0.16.1",
+    "moment":"^2.18.1",
+    "react": "15.3.0",
+    "react-dom": "15.2.1",
+    "react-redux": "4.4.5",
+    "react-tap-event-plugin": "1.0.0",
+    "react-router": "^2.8.1",
+    "react-big-calendar":"^0.13.0",
+    "redux": "^3.0.5",
+    "redux-thunk": "^1.0.3",
+    "socket.io-client": "^1.4.5"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "6.7.7",
+    "babel-eslint": "6.0.3",
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "babel-register": "^6.4.3",
+    "babel-preset-stage-1": "6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^1.10.3",
+    "eslint-loader": "^1.2.0",
+    "eslint-plugin-react": "^3.15.0",
+    "file-loader": "^0.8.5",
+    "node-sass": "3.11.0",
+    "react-hot-loader": "^1.3.0",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.10",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "plugins": [
+      "react"
+    ],
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "eqeqeq": 2,
+      "curly": 2,
+      "no-eq-null": [
+        0
+      ],
+      "no-console": [
+        0
+      ],
+      "no-undef": 2,
+      "no-unused-vars": 1,
+      "quotes": [
+        1,
+        "single"
+      ]
+    }
+  }
+}
