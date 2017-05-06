@@ -1,7 +1,10 @@
 class api {
     constructor() {
-        this.dateScheduleListURL = 'http://localhost:8000/api/date_schedule';
-        this.weekScheduleURL = 'http://localhost:8000/api/week_schedule';
+        this.dateScheduleListURL = 'http://0.0.0.0:8000/api/date_schedule/';
+    }
+
+    getDetailURL(url, id){
+        return url.concat(id);
     }
     
     fetch(method, url, options = {}){
@@ -29,8 +32,16 @@ class api {
         return this.fetch('POST', this.dateScheduleListURL, options);
     }
 
+    updateDateScheduleItem(options){
+        return this.fetch('PUT', this.getDetailURL(this.dateScheduleListURL, options.id), options);
+    }
+
     getDateScheduleItems(){
         return this.fetch('GET', this.dateScheduleListURL)
+    }
+
+    getDateScheduleItem(id){
+        return this.fetch('GET', this.getDetailURL(this.dateScheduleListURL, id));
     }
 
 
