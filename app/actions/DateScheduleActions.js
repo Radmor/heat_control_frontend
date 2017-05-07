@@ -26,3 +26,10 @@ export function receiveDateScheduleItems(dateSchedules) {
     dateSchedules: dateSchedules
   }
 }
+
+export function deleteDateScheduleItem(dateScheduleId){
+  return {
+    type: DATESCHEDULE_DELETE,
+    dateScheduleId: dateScheduleId
+  }
+}

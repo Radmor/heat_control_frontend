@@ -1,6 +1,11 @@
 import React from 'react';
 import Modal from 'react-modal';
 import TextField from 'material-ui/TextField';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 
 const customStyles = {
@@ -17,16 +22,24 @@ const customStyles = {
 
 
 class EditModal extends React.Component{
-    constructor() {
-    super();
 
-    this.state = {
-    };
-    this.handleClose = this.handleClose.bind(this);
+     
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            deleteConfirmationDialogOpen: false
+        };
+        this.handleDeleteConfirmationDialogOpen = this.handleDeleteConfirmationDialogOpen.bind(this);
+        this.handleDeleteConfirmationDialogClose = this.handleDeleteConfirmationDialogClose.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleUpdateEvent = this.handleUpdateEvent.bind(this);
+        this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
     }
 
-    afterOpenModal() {
-    // this.refs.textfield.focus();
+    componentDidMount(){
+
     }
 
     handleClose(id, e) {
@@ -37,12 +50,42 @@ class EditModal extends React.Component{
         this.props.updateTitle(value, id); 
     }
 
-    after(){
-  }
+    handleDeleteConfirmationDialogOpen(){
+        this.setState({deleteConfirmationDialogOpen:true});
+    }
+
+    handleDeleteConfirmationDialogClose(){
+        this.setState({deleteConfirmationDialogOpen:false});
+    }
+    
+    handleUpdateEvent(){
+        this.props.handleUpdateEvent();
+    }
+
+    handleDeleteEvent(){
+        this.props.handleDeleteEvent();
+        this.handleDeleteConfirmationDialogClose();
+    }
 
 
 
     render(){
+
+        const deleteConfirmationDialogActions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.handleDeleteConfirmationDialogClose}
+            />,
+            <FlatButton
+                label="Delete"
+                primary={true}
+                onTouchTap={this.handleDeleteEvent}
+            />
+        ];
+
+
+
         return(
             <Modal
                 isOpen = { this.props.isOpen }
@@ -50,7 +93,9 @@ class EditModal extends React.Component{
                 style={customStyles}
                 onAfterOpen={this.after}
             >
+                <RaisedButton label="Close" onTouchTap={this.handleClose} />
                 <h1>Modal Content</h1>
+                
                 <form onSubmit={this.handleClose.bind(this, this.props.eventId)}>
                     <TextField
                         ref="textfield"
@@ -62,7 +107,17 @@ class EditModal extends React.Component{
                         onSubmit={this.handleClose.bind(this)}
                     />
                 </form>
-                <button onClick={this.handleClose.bind(this)}>close</button>
+                <RaisedButton label="Update" onTouchTap={this.handleUpdateEvent} />
+                <RaisedButton label="Delete" onTouchTap={this.handleDeleteConfirmationDialogOpen} />
+                <Dialog
+                    actions={deleteConfirmationDialogActions}
+                    modal={false}
+                    open={this.state.deleteConfirmationDialogOpen}
+                    onRequestClose={this.handleDeleteConfirmationDialogClose}
+                >
+                    Are you sure you want to delete this event?
+                </Dialog>
+
             </Modal>
         )
     }

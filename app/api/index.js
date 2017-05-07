@@ -44,6 +44,10 @@ class api {
         return this.fetch('GET', this.getDetailURL(this.dateScheduleListURL, id));
     }
 
+    deleteDateScheduleItem(options, id){
+        return this.fetch('DELETE', this.getDetailURL(this.dateScheduleListURL, id), options)
+    }
+
 
 }
 

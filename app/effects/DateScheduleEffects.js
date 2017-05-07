@@ -34,3 +34,14 @@ export function updateDateScheduleItem(dateScheduleItem, newTemperature){
     dateScheduleItem.id).then(json => dispatch(dateScheduleActions.updateDateScheduleItem(json)))
   }
 }
+
+export function deleteDateScheduleItem(dateScheduleItem){
+  return dispatch => {
+    return api.deleteDateScheduleItem({
+      body: JSON.stringify({
+        id: dateScheduleItem.id
+      })
+    },
+    dateScheduleItem.id).then(dispatch(dateScheduleActions.deleteDateScheduleItem(dateScheduleItem.id)))
+  }
+}

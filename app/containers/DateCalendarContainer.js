@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import DateCalendar from '../components/DateCalendar'
-import { createDateScheduleItem, getDateScheduleItems, updateDateScheduleItem } from '../effects/DateScheduleEffects'
+import { createDateScheduleItem, getDateScheduleItems, updateDateScheduleItem, deleteDateScheduleItem } from '../effects/DateScheduleEffects'
 import moment from 'moment';
 
 
@@ -43,6 +43,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateEvent: (event, newTemperature) => {
       dispatch(updateDateScheduleItem(eventToDateScheduleItem(event), newTemperature))
+    },
+    deleteEvent: (event) => {
+      dispatch(deleteDateScheduleItem(eventToDateScheduleItem(event)))
     }
       
   }

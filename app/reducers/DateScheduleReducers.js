@@ -45,7 +45,7 @@ export function dateSchedules(state = initialState, action) {
       let list = state.list.slice();
 
       list.forEach((dateSchedule, index) => {
-        if (dateSchedule.id === action.dateSchedule.id) {
+        if (dateSchedule.id === action.dateScheduleId) {
           dateScheduleIndex = index;
         }
       });

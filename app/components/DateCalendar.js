@@ -21,6 +21,9 @@ class DateCalendar extends React.Component{
             modal: false,
             editedTitle: 0
         }
+        
+        this.handleUpdateEvent = this.handleUpdateEvent.bind(this);
+        this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
     }
 
     componentDidMount(){
@@ -48,9 +51,18 @@ class DateCalendar extends React.Component{
         
     }
 
+    handleUpdateEvent(){
+        this.props.updateEvent(this.getEventById(this.state.eventId), this.state.editedTitle);
+        this.handleModalClose();
+    }
+
+    handleDeleteEvent(){
+        this.props.deleteEvent(this.getEventById(this.state.eventId));
+        this.handleModalClose();
+    }
+
 
     handleModalClose(){
-        this.props.updateEvent(this.getEventById(this.state.eventId), this.state.editedTitle);
         this.setState({modal:false})
     }
 
@@ -105,6 +117,8 @@ class DateCalendar extends React.Component{
                     isOpen={ this.state.modal }
                     eventId={this.state.eventId}
                     handleClose={(e) => this.handleModalClose(e)}
+                    handleUpdateEvent={this.handleUpdateEvent}
+                    handleDeleteEvent={this.handleDeleteEvent}
                     updateTitle={(title, id) => this.updateTitle(title, id)}
                     value={this.state.editedTitle}
                 />
