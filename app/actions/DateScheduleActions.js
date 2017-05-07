@@ -13,10 +13,10 @@ export function requestDateSchedules() {
   }
 }
 
-export function receiveDateSchedule(dateSchedules) {
+export function createDateSchedule(dateSchedule) {
   return {
-    type: DATESCHEDULE_RECEIVE,
-    dateSchedules: dateSchedules
+    type: DATESCHEDULE_POST,
+    dateSchedule: dateSchedule
   }
 }
 

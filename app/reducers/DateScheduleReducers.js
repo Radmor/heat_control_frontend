@@ -10,6 +10,7 @@ export function dateSchedules(state = initialState, action) {
     case DATESCHEDULE_POST: {
        return {
          ...state,
+        isFetching: false,
         list: [
           ...state.list,
           action.dateSchedule
@@ -61,16 +62,6 @@ export function dateSchedules(state = initialState, action) {
       return {
         ...state,
         isFetching: true
-      };
-    }
-
-    case DATESCHEDULE_RECEIVE: {
-      let list = state.list;
-      list[action.dateSchedules.id] = action.dateSchedules;
-      return {
-        ...state,
-        isFetching: false,
-        list: list
       };
     }
 

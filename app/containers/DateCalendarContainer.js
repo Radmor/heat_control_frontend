@@ -5,6 +5,7 @@ import moment from 'moment';
 
 
 function eventToDateScheduleItem(event){
+  console.log(event);
         return {
             'id':event.id,
             'temperature': event.title,
@@ -35,7 +36,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createEvent: (event) => {
-      dispatch(createDateScheduleItem(event))
+      
+      dispatch(createDateScheduleItem(eventToDateScheduleItem(event)))
     },
     getEvents: () => {
       dispatch(getDateScheduleItems())

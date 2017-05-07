@@ -10,6 +10,7 @@ export function getDateScheduleItems() {
 }
 
 export function createDateScheduleItem(dateScheduleItem) {
+    console.log(dateScheduleItem);
   return dispatch => {
     return api.createDateScheduleItem({
       body: JSON.stringify({
@@ -17,7 +18,7 @@ export function createDateScheduleItem(dateScheduleItem) {
         start: dateScheduleItem.start,
         end: dateScheduleItem.end
       })
-    }).then(json => dispatch(dateScheduleActions.receiveDateSchedule(json)))
+    }).then(json => dispatch(dateScheduleActions.createDateSchedule(json)))
   };
 }
 

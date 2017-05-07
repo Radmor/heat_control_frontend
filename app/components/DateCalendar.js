@@ -40,14 +40,10 @@ class DateCalendar extends React.Component{
     }
 
 
-    addSlot(slot){
-        if(this.checkCorrectness(slot)){
-            slot.temperature = 17
-            this.props.createEvent({ 
-                temperature: slot.temperature, 
-                start: slot.start, 
-                end: slot.end 
-            });
+    addSlot(event){
+        event.title = 17;
+        if(this.checkCorrectness(event)){
+            this.props.createEvent(event);
         }
         
     }
