@@ -19,17 +19,17 @@ class DateCalendar extends React.Component{
         this.state= {
             step: 15, 
             modal: false,
-            editableTemperature: 0
+            editedTitle: 0
         }
     }
 
     componentDidMount(){
         
-        this.props.getDateScheduleItems();
+        this.props.getEvents();
     }
 
     checkCorrectness(slot){
-        for(var event of this.props.dateSchedules){
+        for(var event of this.props.events){
             if("undefined" !== typeof event){
                  if((event.start < slot.start && event.end > slot.start) || (event.start < slot.end && event.end > slot.end) || (slot.start <= event.start && slot.end >= event.end)){
                     return false;
@@ -43,7 +43,7 @@ class DateCalendar extends React.Component{
     addSlot(slot){
         if(this.checkCorrectness(slot)){
             slot.temperature = 17
-            this.props.createDateScheduleItem({ 
+            this.props.createEvent({ 
                 temperature: slot.temperature, 
                 start: slot.start, 
                 end: slot.end 
@@ -54,17 +54,16 @@ class DateCalendar extends React.Component{
 
 
     handleModalClose(){
-        this.props.updateDateScheduleItem(this.getEventById(this.state.eventId), this.state.editableTemperature);
+        this.props.updateEvent(this.getEventById(this.state.eventId), this.state.editedTitle);
         this.setState({modal:false})
     }
 
     handleModalOpen(){
-        this.setState({editableTemperature:this.getEventById(this.state.eventId).title, modal:true})
+        this.setState({editedTitle:this.getEventById(this.state.eventId).title, modal:true})
     }
 
     handleEventTemperatureUpdate(id, newValue){
         this.state.events[id].title = newValue;
-        // this.setState({events: this.state.events});
     }
 
     handleSelectEvent(e){
@@ -74,15 +73,15 @@ class DateCalendar extends React.Component{
     }
 
     getEventById(id){
-        for(var event of this.props.dateSchedules){
+        for(var event of this.props.events){
             if(id === event.id){
                 return event
             }
         }
     }
 
-    updateTemperature(temperature, id){
-        this.setState({editableTemperature: temperature}); 
+    updateTitle(title, id){
+        this.setState({editedTitle: title}); 
     }
 
     getSafe(fn) {
@@ -97,7 +96,7 @@ class DateCalendar extends React.Component{
         return(
             <BigCalendar
                 selectable
-                events={ this.props.dateSchedules }
+                events={ this.props.events }
                 defaultDate={new Date()}
                 onSelectSlot={e => this.addSlot(e)}
                 onSelectEvent={e => this.handleSelectEvent(e)}
@@ -110,8 +109,8 @@ class DateCalendar extends React.Component{
                     isOpen={ this.state.modal }
                     eventId={this.state.eventId}
                     handleClose={(e) => this.handleModalClose(e)}
-                    updateTemperature={(temperature, id) => this.updateTemperature(temperature, id)}
-                    value={this.state.editableTemperature}
+                    updateTitle={(title, id) => this.updateTitle(title, id)}
+                    value={this.state.editedTitle}
                 />
 
             </BigCalendar>

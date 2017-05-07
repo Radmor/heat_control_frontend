@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import DateCalendar from '../components/DateCalendar'
-import { createDateScheduleItem, getDateScheduleItems, updateDateScheduleItem } from '../actions/DateScheduleActions'
+import { createDateScheduleItem, getDateScheduleItems, updateDateScheduleItem } from '../effects/DateScheduleEffects'
 import moment from 'moment';
 
 
@@ -13,35 +13,34 @@ function eventToDateScheduleItem(event){
         }
     }
 
-
 const mapStateToProps = (state) => {
   
   var list = [];
   for(var dateScheduleItem of state.dateSchedules.list)
-{
-  list.push({
-        'id': dateScheduleItem.id,
-        'title':dateScheduleItem.temperature,
-        'start': new Date(dateScheduleItem.start),
-        'end': new Date(dateScheduleItem.end)
-      })
-} 
+    {
+      list.push({
+            'id': dateScheduleItem.id,
+            'title':dateScheduleItem.temperature,
+            'start': new Date(dateScheduleItem.start),
+            'end': new Date(dateScheduleItem.end)
+          })
+    } 
 
- return {
-    dateSchedules: list//convertToEvents(state.dateSchedules.list)
+  return {
+    events: list
   }
 }
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createDateScheduleItem: (dateScheduleItem) => {
-      dispatch(createDateScheduleItem(dateScheduleItem))
+    createEvent: (event) => {
+      dispatch(createDateScheduleItem(event))
     },
-    getDateScheduleItems: (dateScheduleItems) => {
-      dispatch(getDateScheduleItems(dateScheduleItems))
+    getEvents: () => {
+      dispatch(getDateScheduleItems())
     },
-    updateDateScheduleItem: (event, newTemperature) => {
+    updateEvent: (event, newTemperature) => {
       dispatch(updateDateScheduleItem(eventToDateScheduleItem(event), newTemperature))
     }
       

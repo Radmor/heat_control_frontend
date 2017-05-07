@@ -34,7 +34,7 @@ class EditModal extends React.Component{
     }
     
     changeValue(id, e, value){
-        this.props.updateTemperature(value, id); 
+        this.props.updateTitle(value, id); 
     }
 
     after(){
