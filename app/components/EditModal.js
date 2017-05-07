@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from 'react-modal';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -8,23 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 
-const customStyles = {
-  content : {
-    
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-
 class EditModal extends React.Component{
-
-     
-
     constructor(props) {
         super(props);
 
@@ -38,9 +21,6 @@ class EditModal extends React.Component{
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
     }
 
-    componentDidMount(){
-
-    }
 
     handleClose(id, e) {
         this.props.handleClose();
@@ -70,7 +50,6 @@ class EditModal extends React.Component{
 
 
     render(){
-
         const deleteConfirmationDialogActions = [
             <FlatButton
                 label="Cancel"
@@ -87,11 +66,8 @@ class EditModal extends React.Component{
 
 
         return(
-            <Modal
-                isOpen = { this.props.isOpen }
-                contentLabel='Modal'
-                style={customStyles}
-                onAfterOpen={this.after}
+            <Dialog
+                open = { this.props.isOpen }
             >
                 <RaisedButton label="Close" onTouchTap={this.handleClose} />
                 <h1>Modal Content</h1>
@@ -118,7 +94,7 @@ class EditModal extends React.Component{
                     Are you sure you want to delete this event?
                 </Dialog>
 
-            </Modal>
+            </Dialog>
         )
     }
 }
