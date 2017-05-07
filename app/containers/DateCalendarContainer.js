@@ -5,7 +5,6 @@ import moment from 'moment';
 
 
 function eventToDateScheduleItem(event){
-  console.log(event);
         return {
             'id':event.id,
             'temperature': event.title,

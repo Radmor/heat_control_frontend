@@ -3,14 +3,13 @@ import * as dateScheduleActions from '../actions/DateScheduleActions';
 
 export function getDateScheduleItems() {
   return dispatch => {
-    dispatch(dateScheduleActions.requestDateSchedules())
+    dispatch(dateScheduleActions.requestDateScheduleItems())
     return api.getDateScheduleItems()
-      .then(json => dispatch(dateScheduleActions.receiveDateSchedules(json)))
+      .then(json => dispatch(dateScheduleActions.receiveDateScheduleItems(json)))
   }
 }
 
 export function createDateScheduleItem(dateScheduleItem) {
-    console.log(dateScheduleItem);
   return dispatch => {
     return api.createDateScheduleItem({
       body: JSON.stringify({
@@ -18,7 +17,7 @@ export function createDateScheduleItem(dateScheduleItem) {
         start: dateScheduleItem.start,
         end: dateScheduleItem.end
       })
-    }).then(json => dispatch(dateScheduleActions.createDateSchedule(json)))
+    }).then(json => dispatch(dateScheduleActions.createDateScheduleItem(json)))
   };
 }
 
@@ -32,6 +31,6 @@ export function updateDateScheduleItem(dateScheduleItem, newTemperature){
         end: dateScheduleItem.end
       })
     },
-    dateScheduleItem.id).then(json => dispatch(dateScheduleActions.updateDateSchedule(json)))
+    dateScheduleItem.id).then(json => dispatch(dateScheduleActions.updateDateScheduleItem(json)))
   }
 }
