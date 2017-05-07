@@ -22,7 +22,6 @@ class EditModal extends React.Component{
 
     this.state = {
     };
-    // this.afterOpenModal = this.afterOpenModal.bind(this);
     this.handleClose = this.handleClose.bind(this);
     }
 
@@ -30,12 +29,12 @@ class EditModal extends React.Component{
     // this.refs.textfield.focus();
     }
 
-    handleClose() {
+    handleClose(id, e) {
         this.props.handleClose();
     }
     
     changeValue(id, e, value){
-        this.props.updateTemperature(value, id);
+        this.props.updateTemperature(value, id); 
     }
 
     after(){
@@ -52,7 +51,7 @@ class EditModal extends React.Component{
                 onAfterOpen={this.after}
             >
                 <h1>Modal Content</h1>
-                <form onSubmit={this.handleClose.bind(this)}>
+                <form onSubmit={this.handleClose.bind(this, this.props.eventId)}>
                     <TextField
                         ref="textfield"
                         required
@@ -70,5 +69,3 @@ class EditModal extends React.Component{
 }
 
 export default EditModal;
-
-//this.props.handleEventTemperatureUpdate(this.props.eventId, 'temperature')

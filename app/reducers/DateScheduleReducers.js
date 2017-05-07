@@ -18,23 +18,23 @@ export function dateSchedules(state = initialState, action) {
     }
 
     case DATESCHEDULE_PUT: {
-      let dateScheduleIndex = null;
+      let dateScheduleItemIndex = null;
 
-      state.list.forEach((dateSchedule, index) => {
-        if (dateSchedule.id === action.dateSchedule.id) {
-          dateScheduleIndex = index;
+      state.list.forEach((dateScheduleItem, index) => {
+        if (dateScheduleItem.id === action.dateScheduleItem.id) {
+          dateScheduleItemIndex = index;
         }
       });
 
       return {
         ...state,
         list: [
-          ...state.list.slice(0, dateScheduleIndex),
+          ...state.list.slice(0, dateScheduleItemIndex),
           {
-            ...state.list[dateScheduleIndex],
-            ...action.dateSchedule
+            ...state.list[dateScheduleItemIndex],
+            ...action.dateScheduleItem
           },
-          ...state.list.slice(dateScheduleIndex + 1)
+          ...state.list.slice(dateScheduleItemIndex + 1)
         ]
       };
     }

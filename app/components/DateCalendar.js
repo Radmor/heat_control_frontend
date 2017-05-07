@@ -17,9 +17,9 @@ class DateCalendar extends React.Component{
         super(props);
         
         this.state= {
-            events : [],
             step: 15, 
-            modal: false
+            modal: false,
+            editableTemperature: 0
         }
     }
 
@@ -52,12 +52,14 @@ class DateCalendar extends React.Component{
         
     }
 
+
     handleModalClose(){
+        this.props.updateDateScheduleItem(this.getEventById(this.state.eventId), this.state.editableTemperature);
         this.setState({modal:false})
     }
 
     handleModalOpen(){
-        this.setState({modal:true});
+        this.setState({editableTemperature:this.getEventById(this.state.eventId).title, modal:true})
     }
 
     handleEventTemperatureUpdate(id, newValue){
@@ -71,9 +73,16 @@ class DateCalendar extends React.Component{
         this.handleModalOpen();
     }
 
+    getEventById(id){
+        for(var event of this.props.dateSchedules){
+            if(id === event.id){
+                return event
+            }
+        }
+    }
+
     updateTemperature(temperature, id){
-        this.state.events[id].title = temperature;
-        this.setState({events: this.state.events});
+        this.setState({editableTemperature: temperature}); 
     }
 
     getSafe(fn) {
@@ -102,7 +111,7 @@ class DateCalendar extends React.Component{
                     eventId={this.state.eventId}
                     handleClose={(e) => this.handleModalClose(e)}
                     updateTemperature={(temperature, id) => this.updateTemperature(temperature, id)}
-                    value={this.getSafe(() => this.state.events[this.state.eventId].title)}
+                    value={this.state.editableTemperature}
                 />
 
             </BigCalendar>

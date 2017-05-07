@@ -22,6 +22,27 @@ export function createDateScheduleItem(dateScheduleItem) {
   };
 }
 
+export function updateDateScheduleItem(dateScheduleItem, newTemperature){
+  return dispatch => {
+    return api.updateDateScheduleItem({
+      body: JSON.stringify({
+        id: dateScheduleItem.id,
+        temperature: newTemperature,
+        start: dateScheduleItem.start,
+        end: dateScheduleItem.end
+      })
+    },
+    dateScheduleItem.id).then(json => dispatch(updateDateSchedule(json)))
+  }
+}
+
+function updateDateSchedule(dateScheduleItem){
+  return {
+    type: DATESCHEDULE_PUT,
+    dateScheduleItem: dateScheduleItem
+  }
+}
+
 function requestDateSchedules() {
   return {
     type: DATESCHEDULE_GET

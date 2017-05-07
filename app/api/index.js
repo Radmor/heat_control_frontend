@@ -4,7 +4,7 @@ class api {
     }
 
     getDetailURL(url, id){
-        return url.concat(id);
+        return url.concat(id + '/');
     }
     
     fetch(method, url, options = {}){
@@ -32,8 +32,8 @@ class api {
         return this.fetch('POST', this.dateScheduleListURL, options);
     }
 
-    updateDateScheduleItem(options){
-        return this.fetch('PUT', this.getDetailURL(this.dateScheduleListURL, options.id), options);
+    updateDateScheduleItem(options, id){
+        return this.fetch('PUT', this.getDetailURL(this.dateScheduleListURL, id), options);
     }
 
     getDateScheduleItems(){
