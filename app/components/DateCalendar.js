@@ -25,12 +25,11 @@ class DateCalendar extends React.Component{
 
     componentDidMount(){
         
-        this.props.store.dispatch(DateScheduleActions.getDateScheduleItems());
-        // console.log(this.props.store.getState());
+        this.props.getDateScheduleItems();
     }
 
     checkCorrectness(slot){
-        for(var event of this.state.events){
+        for(var event of this.props.dateSchedules){
             if("undefined" !== typeof event){
                  if((event.start < slot.start && event.end > slot.start) || (event.start < slot.end && event.end > slot.end) || (slot.start <= event.start && slot.end >= event.end)){
                     return false;
@@ -44,21 +43,11 @@ class DateCalendar extends React.Component{
     addSlot(slot){
         if(this.checkCorrectness(slot)){
             slot.temperature = 17
-            // var created_slot;
-            store.dispatch(DateScheduleActions.createDateScheduleItem({
-                temperature: slot.temperature,
-                start: slot.start,
-                end: slot.end
-            }));
-
-            var created_slot = null;
-            this.state.events[created_slot.id] = {
-                id: created_slot.id,
-                'title': slot.temperature,
-                'start': slot.start,
-                'end': slot.end
-            };
-            this.setState({events: this.state.events})
+            this.props.createDateScheduleItem({ 
+                temperature: slot.temperature, 
+                start: slot.start, 
+                end: slot.end 
+            });
         }
         
     }
@@ -99,7 +88,7 @@ class DateCalendar extends React.Component{
         return(
             <BigCalendar
                 selectable
-                events={this.state.events}
+                events={ this.props.dateSchedules }
                 defaultDate={new Date()}
                 onSelectSlot={e => this.addSlot(e)}
                 onSelectEvent={e => this.handleSelectEvent(e)}

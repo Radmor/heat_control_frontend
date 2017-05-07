@@ -1,5 +1,5 @@
 import api from '../api';
-import { DATESCHEDULE_GET, DATESCHEDULE_POST, DATESCHEDULE_PUT, DATESCHEDULE_DELETE, DATESCHEDULE_RECEIVE } from '../constants/DateScheduleConstants';
+import { DATESCHEDULE_GET, DATESCHEDULE_POST, DATESCHEDULE_PUT, DATESCHEDULE_DELETE, DATESCHEDULE_RECEIVE, DATESCHEDULES_RECEIVE } from '../constants/DateScheduleConstants';
 
 
 export function getDateScheduleItems() {
@@ -18,7 +18,7 @@ export function createDateScheduleItem(dateScheduleItem) {
         start: dateScheduleItem.start,
         end: dateScheduleItem.end
       })
-    }).then(json => dispatch(receiveDateSchedules(json)))
+    }).then(json => dispatch(receiveDateSchedule(json)))
   };
 }
 
@@ -28,10 +28,16 @@ function requestDateSchedules() {
   }
 }
 
-function receiveDateSchedules(dateSchedules) {
-  console.log(dateSchedules);
+function receiveDateSchedule(dateSchedules) {
   return {
     type: DATESCHEDULE_RECEIVE,
+    dateSchedules: dateSchedules
+  }
+}
+
+function receiveDateSchedules(dateSchedules) {
+  return {
+    type: DATESCHEDULES_RECEIVE,
     dateSchedules: dateSchedules
   }
 }

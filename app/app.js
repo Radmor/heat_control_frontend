@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DateCalendar from './components/DateCalendar';
+import DateCalendarContainer from './containers/DateCalendarContainer';
 
 import reducers from './reducers';
 import { createStore, applyMiddleware } from 'redux';
@@ -13,7 +13,7 @@ import thunkMiddleware from 'redux-thunk';
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(reducers);
-
+window.store = store;
 
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <MuiThemeProvider>
-          <DateCalendar store={store}/>
+          <DateCalendarContainer/>
         </MuiThemeProvider>
       </Provider>
     );
