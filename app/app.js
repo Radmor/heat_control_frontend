@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DateCalendarContainer from './containers/DateCalendarContainer';
+import WeekCalendarContainer from './containers/WeekCalendarContainer';
 
 import reducers from './reducers';
 import { createStore, applyMiddleware } from 'redux';
@@ -21,7 +22,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <MuiThemeProvider>
-          <DateCalendarContainer/>
+          <WeekCalendarContainer/>
         </MuiThemeProvider>
       </Provider>
     );

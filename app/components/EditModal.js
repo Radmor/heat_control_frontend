@@ -47,8 +47,6 @@ class EditModal extends React.Component{
         this.handleDeleteConfirmationDialogClose();
     }
 
-
-
     render(){
         const deleteConfirmationDialogActions = [
             <FlatButton
@@ -87,7 +85,6 @@ class EditModal extends React.Component{
                 <RaisedButton label="Delete" onTouchTap={this.handleDeleteConfirmationDialogOpen} />
                 <Dialog
                     actions={deleteConfirmationDialogActions}
-                    modal={false}
                     open={this.state.deleteConfirmationDialogOpen}
                     onRequestClose={this.handleDeleteConfirmationDialogClose}
                 >
