@@ -33,11 +33,11 @@ export function updateWeekScheduleItem(weekScheduleItem, newTemperature){
         id: weekScheduleItem.id,
         temperature: newTemperature,
         day_of_week: weekScheduleItem.day_of_week,
-        start_time: weekScheduleItem.start_time,
-        end_time: weekScheduleItem.end_time
+        start_time: getTime(weekScheduleItem.start_time),
+        end_time: getTime(weekScheduleItem.end_time)
       })
     },
-    weekScheduleItem.id).then(json => dispatch(weekScheduleActions.upweekWeekScheduleItem(json)))
+    weekScheduleItem.id).then(json => dispatch(weekScheduleActions.updateWeekScheduleItem(json)))
   }
 }
 
